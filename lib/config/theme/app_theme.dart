@@ -4,6 +4,7 @@ const Color _customColor = Color(0xFF49149F);
 
 const List<Color> _colorTheme = [
   _customColor,
+  Colors.indigo,
   Colors.blue,
   Colors.teal,
   Colors.green,
@@ -11,8 +12,6 @@ const List<Color> _colorTheme = [
   Colors.orange,
   Colors.pink
 ];
-
-
 
 class AppTheme {
   final int selectedColor;
