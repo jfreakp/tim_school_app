@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tim_school_app/config/theme/app_theme.dart';
+
+import 'presentation/screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +14,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Tim School',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const Scaffold()
+      theme: AppTheme(selectedColor: 3).getTheme(),
+      home: const HomeScreen(),
     );
   }
 }
