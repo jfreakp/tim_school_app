@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Tim School',
       theme: AppTheme(selectedColor: 1).getTheme(),
-      home: const HomeScreen(),
+      home: const InitScreen(),
     );
   }
 }
