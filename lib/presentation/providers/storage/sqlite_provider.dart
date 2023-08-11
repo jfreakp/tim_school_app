@@ -4,17 +4,17 @@ import 'package:sqflite/sqflite.dart';
 import 'package:tim_school_app/domain/dll/create_teacher.dart';
 import 'package:tim_school_app/domain/entities/teacher.dart';
 
-class SqliteProvider {
-  static final SqliteProvider instance = SqliteProvider._init();
+class DBProvider {
+  static final DBProvider instance = DBProvider._init();
 
   static Database? _database;
 
-  SqliteProvider._init();
+  DBProvider._init();
 
   Future<Database> get database async {
     if (_database != null) return _database!;
 
-    _database = await _initDB('db_checking.db');
+    _database = await _initDB('db_time_school5.db');
     return _database!;
   }
 
@@ -26,37 +26,15 @@ class SqliteProvider {
   }
 
   Future _createDB(Database db, int version) async {
-    final sql = CreateTeacher().getCreate();
-    await db.execute(sql);
+    await db.execute(CreateTeacher().getCreate());
     await db.rawInsert(CreateTeacher().insertTable());
   }
 
-  Future<Teacher> getTeacher() async {
+  Future<Teacher?> getAllTeacher() async {
     final db = await database;
-    final res = await db.query('Table');
-    List<Teacher> list =
-        res.isNotEmpty ? res.map((s) => Teacher.fromJson(s)).toList() : [];
-    return list[0];
+    final res = await db.query('teacher');
+    return res.isNotEmpty
+        ? res.map((s) => Teacher.fromJson(s)).toList()[0]
+        : null;
   }
-
-/*
-  Future<Teacher> create(Teacher teacher) async {
-    final db = await instance.database;
-    final id = await db.insert(tableChecking, checking.toJson());
-    return checking.copy(id: id);
-  }
-
-  Future<List<Checking>> getAllCheckink() async {
-    final db = await database;
-    final res = await db.query(tableChecking);
-
-    return res.isNotEmpty ? res.map((s) => Checking.fromJson(s)).toList() : [];
-  }
-
-  Future<int> getCountTable(String table) async {
-    final db = await database;
-    final res = await db.rawQuery("select count(*) from $table");
-    return Sqflite.firstIntValue(res) ?? 0;
-  }
-  */
 }

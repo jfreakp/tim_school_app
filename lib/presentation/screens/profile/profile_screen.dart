@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tim_school_app/presentation/widgets/fieldtext/custom_text_form_field.dart';
+import 'package:provider/provider.dart';
+import 'package:tim_school_app/presentation/providers/teacher/teacher_provider.dart';
 import 'package:tim_school_app/presentation/widgets/profile/card_profile.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -7,6 +8,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final teacher = context.watch<TeacherProvider>();
     return Scaffold(
       body: Column(
         children: [
@@ -18,7 +20,7 @@ class ProfileScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    "Richie Lorie",
+                    '${teacher.profileData?.firstName ?? ''} ',
                     style: Theme.of(context)
                         .textTheme
                         .titleLarge
@@ -27,20 +29,19 @@ class ProfileScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(12),
                     child: Column(
-                      children: const [
-                        SizedBox(height: 16),
+                      children: [
+                        const SizedBox(height: 16),
                         CardProfile(
-                            icon: Icons.person,
-                            title: 'Juan Pablo Torres Díaz'),
-                        SizedBox(height: 2),
+                            icon: Icons.email,
+                            title: '${teacher.profileData?.email ?? ''} '),
+                        const SizedBox(height: 2),
                         CardProfile(
-                            icon: Icons.email, title: 'jptorresdota@gmail.com'),
-                        SizedBox(height: 2),
+                            icon: Icons.phone_android,
+                            title: '${teacher.profileData?.cellPhone ?? ''} '),
+                        const SizedBox(height: 2),
                         CardProfile(
-                            icon: Icons.phone_android, title: '0999999991'),
-                        SizedBox(height: 2),
-                        CardProfile(
-                            icon: Icons.phone, title: '072110148'),
+                            icon: Icons.phone,
+                            title: '${teacher.profileData?.phone ?? ''} '),
                       ],
                     ),
                   ),

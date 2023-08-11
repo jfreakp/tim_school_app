@@ -37,19 +37,23 @@ class _InitScreenState extends State<InitScreen> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
+        unselectedItemColor: Colors.white,
+        backgroundColor: colors.secondary,
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: const Icon(Icons.home_filled),
+              icon: Icon(Icons.home_filled,color: Colors.white),
               label: 'Home',
-              backgroundColor: colors.primary),
+              activeIcon: Icon(Icons.home_filled,color: Colors.amber)),
+              
           BottomNavigationBarItem(
-              icon: const Icon(Icons.person_sharp),
+              icon: Icon(Icons.person_sharp, color: Colors.white),
               label: 'Perfil',
-              backgroundColor: colors.primary)
+              activeIcon: Icon(Icons.home_filled,color: Colors.amber))
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: colors.primary,
+        selectedItemColor: Colors.amber,
         onTap: _onItemTapped,
+        
       ),
     );
   }
