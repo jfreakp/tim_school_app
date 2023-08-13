@@ -1,7 +1,7 @@
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:tim_school_app/domain/dll/create_teacher.dart';
+import 'package:tim_school_app/domain/dll/create_db.dart';
 import 'package:tim_school_app/domain/entities/teacher.dart';
 
 class DBProvider {
