@@ -3,7 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:tim_school_app/domain/entities/student.dart';
 import 'package:tim_school_app/presentation/providers/teacher/teacher_provider.dart';
 import 'package:tim_school_app/presentation/widgets/home/card_view_register.dart';
+import 'package:tim_school_app/presentation/widgets/home/nfc_read.dart';
 import 'package:tim_school_app/presentation/widgets/home/student_list_info.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -16,12 +18,11 @@ class HomeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
-            
               child: const Icon(Icons.refresh),
               onPressed: () {
                 teacher.deleteAllStudentList();
               }),
-              const SizedBox(height: 16),
+          const SizedBox(height: 16),
           FloatingActionButton(
               child: const Icon(Icons.add),
               onPressed: () {
@@ -36,11 +37,14 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-           Row(
+          Row(
             children: [
-              StudentListInfo(title: 'Total', subtitle: '${teacher.studentList.length}'),
+              StudentListInfo(
+                  title: 'Total', subtitle: '${teacher.studentList.length}'),
               const Divider(),
-              StudentListInfo(title: 'Profesor', subtitle: '${teacher.profileData?.id ?? ''}'),
+              StudentListInfo(
+                  title: 'Profesor',
+                  subtitle: '${teacher.profileData?.id ?? ''}'),
             ],
           ),
           const SizedBox(height: 16),
@@ -56,6 +60,9 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 18),
+          NfcRead(
+            onValue: teacher.createStudentList,
+          ),
         ],
       ),
     );
