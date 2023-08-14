@@ -1,4 +1,5 @@
 const tableTeacher = 'teacher';
+const tableStudentList = 'studentlist';
 const notNull = 'NOT NULL';
 const idType = 'INTEGER PRIMARY KEY';// AUTOINCREMENT';
 const textType = 'TEXT';
@@ -16,7 +17,7 @@ class CreateTeacher {
         cell_phone $textType,
         phone $textType,
         status $textType $notNull
-      )
+      );
     ''';
     return sql;
   }
@@ -32,13 +33,13 @@ class CreateTeacher {
 class CreateStudentList {
   String getCreate() {
     const sql = '''
-      CREATE TABLE $tableTeacher ( 
+      CREATE TABLE $tableStudentList ( 
         id $idType $notNull,  
         ci $textType $notNull,
         migrated $boolType $notNull,
-        teacher_id $textType $notNull,
+        teacher_ci $textType $notNull,
         created_at $dateTimetype $notNull
-      )
+      );
     ''';
     return sql;
   }
